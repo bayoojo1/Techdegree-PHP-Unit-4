@@ -2,7 +2,7 @@
 class Phrase
 {
     public $currentPhrase;
-    public $selected = array();
+    public $selected = [];
     public $phrase = [
 
       'Boldness be my friend',
@@ -10,7 +10,11 @@ class Phrase
       'Broken crayons still color',
       'The adventure begins',
       'Dream without fear',
-      'Love without limits'
+      'Love without limits',
+      'Live and let live',
+      'It is well with my soul',
+      'A friend in need is a friend indeed',
+      'As clear as crystal'
 ];
 
     public function __construct($phrase = null, $selected = null) {
@@ -54,6 +58,7 @@ class Phrase
         strtolower($this->currentPhrase)
         )));
     }
+    
 
     public function checkLetter($letter) {
       if (in_array($letter, $this->getLetterArray())) {
@@ -62,5 +67,11 @@ class Phrase
         return false;
       }
     }
+
+    public function numberLost()
+    {
+      return count(array_diff($this->selected, $this->getLetterArray()));
+    }
+    
 }
 ?>

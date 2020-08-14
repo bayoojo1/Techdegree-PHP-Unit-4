@@ -1,8 +1,8 @@
 <?php 
-session_start();
-
 include 'inc/Game.php';
 include 'inc/Phrase.php';
+
+session_start();
 
 if(isset($_POST['start'])) {
 	unset($_SESSION['phrase']);
@@ -14,11 +14,7 @@ if(!isset($_POST['key'])) {
 	$_SESSION['game'] = new Game($_SESSION['phrase']);
 } else {
 	$selected = filter_input(INPUT_POST, 'key', FILTER_SANITIZE_STRING);
-	//$_SESSION['selected'][] = $selected;
 	$_SESSION['phrase']->selected[] = $selected;
-	$_SESSION['phrase'] = new Phrase($_SESSION['phrase'], $_SESSION['selected']);
-	$_SESSION['game'] = new Game($_SESSION['phrase']);
-	
 }
 ?>
 <!DOCTYPE html>
@@ -36,6 +32,7 @@ if(!isset($_POST['key'])) {
 		<div class="main-container">
 			<h2 class="header">Phrase Hunter</h2>
 			<?php 
+			echo $_SESSION['phrase']->numberLost();
 			echo $_SESSION['phrase']->addPhraseToDisplay(); 
             echo $_SESSION['game']->displayKeyboard();
 			echo $_SESSION['game']->displayScore();
