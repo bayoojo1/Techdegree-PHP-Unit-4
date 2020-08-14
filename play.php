@@ -32,7 +32,6 @@ if(!isset($_POST['key'])) {
 		<div class="main-container">
 			<h2 class="header">Phrase Hunter</h2>
 			<?php 
-			echo $_SESSION['phrase']->numberLost();
 			echo $_SESSION['phrase']->addPhraseToDisplay(); 
             echo $_SESSION['game']->displayKeyboard();
 			echo $_SESSION['game']->displayScore();

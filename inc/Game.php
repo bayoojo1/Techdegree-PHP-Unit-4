@@ -4,9 +4,9 @@ class Game
     private $phrase;
     private $lives = 5;
 
-    public function __construct($phraseObj) 
+    public function __construct($phrase) 
     {
-        $this->phrase = $phraseObj;
+        $this->phrase = $phrase;
     }
 
     public function displayKeyboard() {
@@ -54,8 +54,10 @@ class Game
     public function displayScore() {
         $scores = '<div id="scoreboard" class="section">';
             $scores .= '<ol>';
-            //$scores .= '<li class="tries"><img src="images/loseHeart.png" height="35px" widght="30px"></li>';
-            for ($x=1; $x<=$this->lives; $x++) {
+            for ($x=1; $x <= $this->phrase->numberLost(); $x++) {
+            $scores .= '<li class="tries"><img src="images/lostHeart.png" height="35px" widght="30px"></li>';
+            }
+            for ($x=1; $x <= ($this->lives - $this->phrase->numberLost()); $x++) {
             $scores .= '<li class="tries"><img src="images/liveHeart.png" height="35px" widght="30px"></li>';
             }
             $scores .= '</ol>';

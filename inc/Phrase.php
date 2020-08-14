@@ -21,8 +21,8 @@ class Phrase
         if(!empty($phrase)) {
             $this->currentPhrase = $phrase;   
         } else if(!isset($phrase)) {
-          $randomPhrase = array_rand($this->phrase);
-          $this->currentPhrase = $this->phrase[$randomPhrase];
+          $randPhrase = array_rand($this->phrase);
+          $this->currentPhrase = $this->phrase[$randPhrase];
         }
         if(!empty($selected)) {
           $this->selected = $selected;
