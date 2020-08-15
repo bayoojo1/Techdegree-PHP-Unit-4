@@ -59,7 +59,6 @@ class Phrase
         )));
     }
     
-
     public function checkLetter($letter) {
       if (in_array($letter, $this->getLetterArray())) {
         return true;

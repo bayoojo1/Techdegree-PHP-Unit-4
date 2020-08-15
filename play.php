@@ -32,12 +32,25 @@ if(!isset($_POST['key'])) {
 		<div class="main-container">
 			<h2 class="header">Phrase Hunter</h2>
 			<?php 
+			echo $_SESSION['game']->gameOver();
 			echo $_SESSION['phrase']->addPhraseToDisplay(); 
             echo $_SESSION['game']->displayKeyboard();
 			echo $_SESSION['game']->displayScore();
             ?>
 		</div>
 
+		<script>
+        document.addEventListener('keydown', function(event) {
+          var keyboard = document.getElementsByClassName('key');
+          var key_press = event.key;
+          for(let i= 0; i <= keyboard.length -1; i++) {
+              let key = keyboard[i].value;
+              if(key_press == key) {
+                keyboard[i].click();
+              }
+          }
+        });
+        </script>
 	</body>
 </html>
 

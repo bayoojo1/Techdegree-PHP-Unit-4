@@ -9,6 +9,15 @@ class Game
         $this->phrase = $phrase;
     }
 
+    public function checkForWin() {
+        if (count(array_intersect($this->phrase->selected, $this->phrase->getLetterArray())) == count($this->phrase->getLetterArray())) {
+          return true;
+        } else {
+          return false;
+        }
+        
+      }
+
     public function displayKeyboard() {
         $keyboard = '<form action="play.php" method="post">';
                         $keyboard .= '<div id="qwerty" class="section">';
@@ -72,6 +81,32 @@ class Game
             return "<input id=\"" . $letter . "\" type=\"submit\" button name=\"key\"value=\"" . $letter . "\" class=\"key correct\" disabled ></button>";
         } else {
             return "<input id=\"" . $letter . "\" type=\"submit\" button name=\"key\"value=\"" . $letter . "\" class=\"key incorrect\" disabled ></button>";
+        }
+    }
+
+    public function checkForLoss() {
+        if($this->phrase->numberLost() >= $this->lives) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function gameOver() {
+        if($this->checkForLoss() == true) {
+            return '<div id="overlay" class="lose">' .
+            '<h2 class="header" style="color:white;">Phrase Hunter</h2>' .
+            '<h1 id="game-over-message">The phrase was: ' . $this->phrase->currentPhrase . '. Better luck next time!</h1></d>' .
+            '<form action="play.php" method="post">' .
+            '<input id="btn__reset" type="submit" name="start" value="Try Again?" />' .
+            '</form></div>';
+        } else if($this->checkForWin() == true) {
+            return '<div id="overlay" class="win">' .
+            '<h2 class="header" style="color:white;">Phrase Hunter</h2>' .
+            '<h1 id="game-over-message">Congratulations!: ' . $this->phrase->currentPhrase . '. You are correct.</h1></d>' .
+            '<form action="play.php" method="post">' .
+            '<input id="btn__reset" type="submit" name="start" value="Play again?" />' .
+            '</form></div>';
         }
     }
 }
