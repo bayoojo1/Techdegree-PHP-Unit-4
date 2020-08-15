@@ -8,7 +8,7 @@ class Game
     {
         $this->phrase = $phrase;
     }
-
+    // function to check for a win
     public function checkForWin() {
         if (count(array_intersect($this->phrase->selected, $this->phrase->getLetterArray())) == count($this->phrase->getLetterArray())) {
           return true;
@@ -17,7 +17,7 @@ class Game
         }
         
       }
-
+      // function for the keyboard display
     public function displayKeyboard() {
         $keyboard = '<form action="play.php" method="post">';
                         $keyboard .= '<div id="qwerty" class="section">';
@@ -59,7 +59,7 @@ class Game
                     $keyboard .= '</form>';
         return $keyboard;
     }
-
+    // function to display the scores
     public function displayScore() {
         $scores = '<div id="scoreboard" class="section">';
             $scores .= '<ol>';
@@ -73,7 +73,7 @@ class Game
         $scores .= '</div>';
         return $scores;
     }
-
+    // this function either change the color or disable the letters when selected
     public function letterKeyHandler($letter) {
         if(!in_array($letter, $this->phrase->selected)) {
             return "<input id=\"" . $letter . "\" type=\"submit\" button name=\"key\"value=\"" . $letter . "\" class=\"key\" ></button>";
@@ -83,7 +83,7 @@ class Game
             return "<input id=\"" . $letter . "\" type=\"submit\" button name=\"key\"value=\"" . $letter . "\" class=\"key incorrect\" disabled ></button>";
         }
     }
-
+    // function that check for a loss
     public function checkForLoss() {
         if($this->phrase->numberLost() >= $this->lives) {
             return true;
@@ -91,7 +91,7 @@ class Game
             return false;
         }
     }
-
+    // this function displays the gameover overlay when the game ends in either win or loss
     public function gameOver() {
         if($this->checkForLoss() == true) {
             return '<div id="overlay" class="lose">' .

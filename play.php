@@ -1,9 +1,9 @@
 <?php 
 include 'inc/Game.php';
 include 'inc/Phrase.php';
-
+// start a session
 session_start();
-
+// If post variable is start, reset both the phrase and the selection
 if(isset($_POST['start'])) {
 	unset($_SESSION['phrase']);
 	unset($_SESSION['selected']);
@@ -38,7 +38,7 @@ if(!isset($_POST['key'])) {
 			echo $_SESSION['game']->displayScore();
             ?>
 		</div>
-
+		<!--script that enable the usage of physical keyboard to play the game-->
 		<script>
         document.addEventListener('keydown', function(event) {
           var keyboard = document.getElementsByClassName('key');

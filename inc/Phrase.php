@@ -3,6 +3,7 @@ class Phrase
 {
     public $currentPhrase;
     public $selected = [];
+    // property that defines the array of phrases to be display to players
     public $phrase = [
 
       'Boldness be my friend',
@@ -29,7 +30,7 @@ class Phrase
         }
 
     }
-
+    // function that list out each letter in the phrase
     public function addPhraseToDisplay()
     {
       $characters = str_split(strtolower($this->currentPhrase));
@@ -66,7 +67,7 @@ class Phrase
         return false;
       }
     }
-
+    // function that count the loss during phrase letter selection
     public function numberLost()
     {
       return count(array_diff($this->selected, $this->getLetterArray()));
